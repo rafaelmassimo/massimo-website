@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import {SessionProvider} from '../app/components/AuthProvider';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={montserrat.className}>{children}</body>
+			<SessionProvider>
+				<body className={montserrat.className}>{children}</body>
+			</SessionProvider>
 		</html>
 	);
 }

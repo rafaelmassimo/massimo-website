@@ -1,10 +1,11 @@
-import { Model, Schema, Types, model } from 'mongoose';
+import mongoose, { Model, Schema, Types, model } from 'mongoose';
 
 export type UserType = {
 	id: Types.ObjectId;
 	email: string;
 	username: string;
 	password: string;
+    role?: string;
 };
 
 type timestamps = {
@@ -26,12 +27,16 @@ const UserSchema = new Schema(
 			type: String,
 			required: [true, 'Username is required'],
 		},
+        role:{
+            type: String,
+			default: "ADMIN"
+        }
 	},
 	{
 		timestamps: true,
 	},
 );
 
-const User = model<UserType, UserModel>('User', UserSchema);
+const User: Model<UserType> = mongoose.models.User || mongoose.model<UserType>('User', UserSchema);
 
 export default User;
