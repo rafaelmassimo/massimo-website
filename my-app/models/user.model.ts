@@ -1,6 +1,6 @@
 import mongoose, { Model, Schema, Types, model } from 'mongoose';
 
-export type UserType = {
+export type userType = {
 	id: Types.ObjectId;
 	email: string;
 	username: string;
@@ -13,7 +13,7 @@ type timestamps = {
 	updatedAt: string;
 };
 
-export type UserModel = Model<UserType & timestamps>;
+export type UserModel = Model<userType & timestamps>;
 
 const UserSchema = new Schema(
 	{
@@ -37,6 +37,6 @@ const UserSchema = new Schema(
 	},
 );
 
-const User: Model<UserType> = mongoose.models.User || mongoose.model<UserType>('User', UserSchema);
+const User: Model<userType> = mongoose.models.User || mongoose.model<userType>('User', UserSchema);
 
 export default User;
