@@ -8,7 +8,7 @@ const CategorySelector = () => {
 				<input type="checkbox" />
 				<div className="btn collapse-title text-xl font-medium text-center text-secondary">Categorias</div>
 				<div className="collapse-content">
-					<ul className="menu text-base-content min-h-full w-auto p-4 items-center text-accent">
+					<ul className="menu  min-h-full w-auto p-4 items-center text-accent">
 						{/* Sidebar content here */}
 						<li className="mr-4">
 							<a>Sidebar Item 1</a>

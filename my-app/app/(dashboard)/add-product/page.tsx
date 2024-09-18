@@ -1,28 +1,35 @@
+'use client';
+
 import React from 'react';
-import { getServerSession } from 'next-auth';
-import options from '@/app/api/auth/[...nextauth]/options';
-import { redirect } from 'next/navigation';
-import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import AddProduct from '@/app/actions/addProduct';
 
-const AddProductPage = async () => {
-	const session = await getServerSession(options);
+const AddProductPage = () => {
+	const testProduct = {
+		productName: 'Outdoor Banner',
+		productDescription: 'High-quality weather-resistant outdoor banner.',
+		productImages: ['image1.jpg', 'image2.jpg'],
+		category: 'banner',
+	};
 
-	//Here you can protect the page by checking if the session is not available!!
-	//Here you can protect the server side pages
-
-	console.log('Session:', session);
+	const handleClick = async () => {
+		const res = await AddProduct(testProduct);
+		console.log(res);
+	};
 
 	return (
 		<div>
-			<h1 className="text-success">Member Server Page</h1>
-			<p className="text-primary">{session?.user?.email}</p>
-			<p className="text-primary">{session?.user?.role}</p>
-			<p className="text-primary">{session?.user?.name}</p>
 			<Link className="text-warning" href="/api/auth/signout?callbackUrl=/&redirect=false">
 				get out
 			</Link>
-
+			<button
+				type="button"
+				className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl
+			focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+				onClick={handleClick}
+			>
+				Create Product
+			</button>
 		</div>
 	);
 };

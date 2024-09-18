@@ -1,11 +1,11 @@
 import mongoose, { Model, Schema, Types, model } from 'mongoose';
 
 export type productType = {
-	id: Types.ObjectId;
+	id?: Types.ObjectId;
 	productName: string;
     productDescription: string;
-    productCode: number;
-    productImages?:[string];
+    productCode?: string;
+    productImages?:string[];
     category: string;
 };
 
@@ -14,7 +14,7 @@ type timestamps = {
 	updatedAt: string;
 };
 
-export type UserModel = Model<productType & timestamps>;
+export type ProductModel = Model<productType & timestamps>;
 
 const ProductSchema = new Schema(
 	{
@@ -27,7 +27,7 @@ const ProductSchema = new Schema(
             required: [true, 'Product Description is required'],
         },
         productCode: {
-            type: Number,
+            type: String,
             required: [true, 'Product Code is required'],
         },
         category: {
@@ -47,6 +47,7 @@ const ProductSchema = new Schema(
 	},
 );
 
-const Product: Model<productType> = mongoose.models.Product || mongoose.model<productType>('Product', ProductSchema);
+const Product = model<productType, ProductModel>('Product', ProductSchema);
+
 
 export default Product;
