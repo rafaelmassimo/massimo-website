@@ -6,7 +6,7 @@ export type productType = {
     productDescription: string;
     productCode: number;
     productImages?:[string];
-
+    category: string;
 };
 
 type timestamps = {
@@ -29,6 +29,10 @@ const ProductSchema = new Schema(
         productCode: {
             type: Number,
             required: [true, 'Product Code is required'],
+        },
+        category: {
+            type: String,
+            required: [true, 'Category is required'],
         },
         productImages: {
             type: [String],

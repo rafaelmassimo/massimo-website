@@ -23,11 +23,11 @@ onClick={() => signIn()}>SignIn</button>
 				<div>
 					<Link href="/api/auth/signin">get in</Link>
 				</div>
+				<div>
+					<Link href="/products">Products</Link>
+				</div>
 			</div>
 
-			<div className='container'>
-				<Slider />
-			</div>
 		</>
 	);
 }

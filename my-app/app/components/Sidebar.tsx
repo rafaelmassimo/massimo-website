@@ -1,22 +1,28 @@
 import Link from 'next/link';
 import React from 'react';
+import CategorySelector from './CategorySelector';
+import SidebarHeader from './SidebarHeader';
+import { getServerSession } from 'next-auth';
+import options from '../api/auth/[...nextauth]/options';
 
-const Sidebar = () => {
+const Sidebar = async () => {
+	const session = await getServerSession(options);
+
 	return (
-		<div className="px-4 w-80 min-h-full bg-base-300 py-12 grid grid-rows-[auto,1fr,auto]">
-			<ul className="menu text-base-content min-h-full w-auto p-4">
-				{/* Sidebar content here */}
-				<li className="mr-4">
-					<a>Sidebar Item 1</a>
-				</li>
-				<li className="mr-4">
-					<Link href={'/'}>Sidebar Item 2</Link>
-				</li>
-				<li className="mr-4">
-					<a>Sidebar Item 3</a>
-				</li>
-			</ul>
-		</div>
+		<>
+			<div className="px-4 w-fit min-h-full bg-base-300 py-12 flex flex-col">
+				<SidebarHeader />
+				<div>
+					<CategorySelector />
+				</div>
+
+				{session && (
+					<div className="flex items-center justify-center mt-20 ">
+						<button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Adicionar Produto</button>
+					</div>
+				)}
+			</div>
+		</>
 	);
 };
 
