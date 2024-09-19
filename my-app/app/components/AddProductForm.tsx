@@ -1,19 +1,21 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import SubmitButton from './SubmitButton';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation';
-import AddProductTest from '../actions/addProductTest';
 import addProduct from '../actions/addProduct';
+import DNALoarder from './DNALoarder';
+import SubmitButton from './SubmitButton';
 
 const AddProductForm = () => {
 	const route = useRouter();
 	const [images, setImages] = useState<File[]>([]);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log('tricked');
 		const files = e.target.files;
 
 		if (files) {
@@ -32,16 +34,38 @@ const AddProductForm = () => {
 			setImages(updatedImages);
 		}
 	};
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		const data = new FormData(e.currentTarget);
 
-		const formData = new FormData(e.currentTarget);
-		const res = await addProduct(formData, images);
+		const imageUrls = [];
 
-		if (res && res.error) {
-			return toast.error(res.error);
+		for (const imageFile of images) {
+			const imageBuffer = await imageFile.arrayBuffer();
+			const imageArray = Array.from(new Uint8Array(imageBuffer));
+			const imageData = Buffer.from(imageArray);
+
+			// Convert the image data to base64
+			const imageBase64 = imageData.toString('base64');
+			imageUrls.push(imageBase64);
 		}
-		toast.success(res?.success);
+		const userData = {
+			productName: data.get('productName') as string,
+			productDescription: data.get('productDescription') as string,
+			category: data.get('category') as string,
+			productImages: imageUrls,
+		};
+
+		setLoading(true);
+		const res = await addProduct(userData);
+		if (res && res.error) {
+			toast.error(res?.error);
+		} else {
+			toast.success(res?.success);
+			route.push('/products');
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -117,25 +141,29 @@ const AddProductForm = () => {
 							<h3 className="text-secondary mb-4 text-left">Imagens:</h3>
 
 							{images.map((image: any, index: number) => (
-								<>
-									<div className="badge badge-secondary text-base-100 my-1" key={index}>
-										{image.name}
-									</div>
-								</>
+								<div className="badge badge-secondary text-base-100 my-1" key={index}>
+									{image.name}
+								</div>
 							))}
 						</div>
 					)}
 
 					{/* SUBMIT SECTION */}
 					<div className="mt-10">
-						<SubmitButton />
+						{loading ? (
+							<DNALoarder />
+						) : (
+							<>
+								<SubmitButton />
 
-						<button
-							className="bg-gray-400 text-white hover:bg-gray-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
-							onClick={() => route.push('/products')}
-						>
-							Cancel
-						</button>
+								<button
+									className="bg-gray-400 text-white hover:bg-gray-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
+									onClick={() => route.push('/products')}
+								>
+									Cancel
+								</button>
+							</>
+						)}
 					</div>
 				</div>
 			</form>

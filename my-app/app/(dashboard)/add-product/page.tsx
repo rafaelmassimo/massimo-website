@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import AddProduct from '@/app/actions/addProduct';
 import AddProductForm from '@/app/components/AddProductForm';
 
 const AddProductPage = () => {
