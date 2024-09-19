@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import { FaBarsStaggered } from 'react-icons/fa6';
+import { ToastContainer } from 'react-toastify';
 import Footer from '../components/Footer';
 
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
@@ -21,6 +22,7 @@ const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 				</div>
 			</div>
 			<Footer />
+			<ToastContainer />
 		</>
 	);
 };
