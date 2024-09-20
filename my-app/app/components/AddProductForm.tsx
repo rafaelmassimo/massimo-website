@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import addProduct from '../actions/addProduct';
+import { addProduct } from '@/app/actions/addProduct';
 import DNALoarder from './DNALoarder';
 import SubmitButton from './SubmitButton';
 
@@ -39,7 +39,8 @@ const AddProductForm = () => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
 
-		const imageUrls = [];
+		//*PREPARE THE IMAGES FOR UPLOAD
+		const imagesPayloads: any[] = [];
 
 		for (const imageFile of images) {
 			const imageBuffer = await imageFile.arrayBuffer();
@@ -48,24 +49,36 @@ const AddProductForm = () => {
 
 			// Convert the image data to base64
 			const imageBase64 = imageData.toString('base64');
-			imageUrls.push(imageBase64);
+
+			const imagePayLoad = {
+				image: `data:${imageFile.type};base64,${imageBase64}`,
+			};
+
+			imagesPayloads.push(imagePayLoad);
 		}
+
+		//* CREATE NEW OBJECT WITH THE DATA FROM FORM
 		const userData = {
 			productName: data.get('productName') as string,
 			productDescription: data.get('productDescription') as string,
 			category: data.get('category') as string,
-			productImages: imageUrls,
+			productImages: imagesPayloads,
 		};
 
 		setLoading(true);
-		const res = await addProduct(userData);
-		if (res && res.error) {
-			toast.error(res?.error);
-		} else {
-			toast.success(res?.success);
-			route.push('/products');
+		try {
+			//* CALL THE ADD PRODUCT ACTION
+			const res = await addProduct(userData);
+			if (res?.success) {
+				toast.success(res?.success);
+				route.push('/products');
+			}
+		} catch (error) {
+			console.error('Error adding product:', error);
+
+		} finally {
+			setLoading(false);
 		}
-		setLoading(false);
 	};
 
 	return (
