@@ -6,3 +6,12 @@ export type UserTypeImported = {
 	password: string | undefined;
 	role?: string;
 };
+
+export type EditProductType = {
+    owner: string | Types.ObjectId;
+    productId: string | Types.ObjectId;
+    productName: string;
+    productDescription: string;
+    category: string;
+    productImages: string[];
+};

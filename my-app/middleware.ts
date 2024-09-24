@@ -14,4 +14,4 @@ export { default } from 'next-auth/middleware';
     
 // });
 //But here you can decide which pages you want to protect
-export const config = { matcher: ['/add-product'] };
+export const config = { matcher: ['/add-product', '/add-product/:id'] };

@@ -5,6 +5,8 @@ import connectDB from '@/config/database';
 import cloudinary from '@/config/cloudinary';
 import { getServerSession } from 'next-auth';
 import User from '@/models/user.model';
+import options from '../api/auth/[...nextauth]/options';
+
 
 interface ProductType {
 	productName: string;
@@ -14,7 +16,8 @@ interface ProductType {
 }
 
 export async function addProduct(userData: ProductType) {
-	const session = await getServerSession();
+	const session = await getServerSession(options);
+	
 	if (!session) {
 		return { error: 'You need to be signed in to add a product' };
 	}
