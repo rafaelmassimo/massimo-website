@@ -1,7 +1,7 @@
 import React from 'react';
 import { DNA } from 'react-loader-spinner';
 
-const DNALoarder = () => {
+const DNALoader = () => {
 	return (
 		<DNA
 			height="90"
@@ -13,4 +13,4 @@ const DNALoarder = () => {
 	);
 };
 
-export default DNALoarder;
+export default DNALoader;

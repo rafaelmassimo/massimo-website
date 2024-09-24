@@ -1,50 +1,48 @@
-// 'use server';
+'use server';
 
-// import cloudinary from '@/config/cloudinary';
-// import connectDB from '@/config/database';
-// import { getServerSession } from 'next-auth';
-// import { revalidatePath } from 'next/cache';
-// import options from '../api/auth/[...nextauth]/options';
-// import User from '@/models/user.model';
+import cloudinary from '@/config/cloudinary';
+import connectDB from '@/config/database';
+import { getServerSession } from 'next-auth';
+import { revalidatePath } from 'next/cache';
+import options from '../api/auth/[...nextauth]/options';
+import User from '@/models/user.model';
+import Product from '@/models/product.model';
 
-// async function deleteProduct(productId: string) {
-// 	const session = await getServerSession(options);
+async function deleteProduct(productId: string, owner: string) {
+	const session = await getServerSession(options);
 
-// 	if (!session) {
-// 		return { error: 'You need to be signed in to add a product' };
-// 	}
+	if (!session) {
+		return { error: 'You need to be signed in to add a product' };
+	}
 
-// 	await connectDB();
+	await connectDB();
 
-// 	const property = await Property.findById(propertyId);
+	const product = await Product.findById(productId);
 
-// 	if (!property) throw new Error('Property Not Found');
+	if (!product) throw new Error('Product Not Found');
 
-// 	// Verify ownership
-// 	if (property.owner.toString() !== userId) {
-// 		throw new Error('Unauthorized');
-// 	}
+	// Verify ownership
+	if (product?.owner?.toString() !== owner) {
+        throw new Error('You are not the owner of this product');
+    }
 
-// 	// extract public id's from image url in DB
-// 	const publicIds = property.images.map((imageUrl) => {
-// 		const parts = imageUrl.split('/');
-// 		return parts.at(-1).split('.').at(0);
-// 	});
+	// extract public id's from image url in DB
+	const publicIds = product.productImages.map((imageUrl:any) => {
+		const parts = imageUrl.split('/');
+		return parts.at(-1).split('.').at(0);
+	});
 
-// 	// Delete images from Cloudinary
-// 	if (publicIds.length > 0) {
-// 		for (let publicId of publicIds) {
-// 			await cloudinary.uploader.destroy('propertypulse/' + publicId);
-// 		}
-// 	}
+	// Delete images from Cloudinary
+	if (publicIds.length > 0) {
+		for (let publicId of publicIds) {
+			await cloudinary.uploader.destroy('massimo_massimo/' + publicId);
+		}
+	}
 
-// 	// Proceed with property deletion
-// 	await property.deleteOne();
+	// Proceed with property deletion
+	await Product.deleteOne();
 
-// 	// Revalidate the cache
-// 	// NOTE: since properties are pretty much on every page, we can simply
-// 	// revalidate everything that uses our top level layout
-// 	revalidatePath('/', 'layout');
-// }
+	revalidatePath('/products', 'page');
+}
 
-// export default deleteProduct;
+export default deleteProduct;

@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addProduct } from '@/app/actions/addProduct';
-import DNALoarder from './DNALoarder';
+import DNALoader from './DNALoarder';
 import SubmitButton from './SubmitButton';
 
 const AddProductForm = () => {
@@ -164,7 +164,7 @@ const AddProductForm = () => {
 					{/* SUBMIT SECTION */}
 					<div className="mt-10">
 						{loading ? (
-							<DNALoarder />
+							<DNALoader />
 						) : (
 							<>
 								<SubmitButton />
