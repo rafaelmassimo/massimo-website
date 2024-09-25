@@ -3,11 +3,11 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { getAllCategories } from '../actions/getAllCategories';
 
-const CategorySelector = ({ userId }: { userId: string }) => {
+const CategorySelector = () => {
 	const [categories, setCategories] = useState<string[]>();
 
 	const handleClick = async () => {
-		const newCategories = await getAllCategories(userId);
+		const newCategories = await getAllCategories();
 		setCategories(newCategories!);
 	};
 
@@ -25,7 +25,7 @@ const CategorySelector = ({ userId }: { userId: string }) => {
 						{categories?.map((category: string) => {
 							return (
 								<li className="mr-4 text-lg" key={category}>
-									<Link href={'/products'}>{category}</Link>
+									<Link href={`/products/${category}`}>{category}</Link>
 								</li>
 							);
 						})}

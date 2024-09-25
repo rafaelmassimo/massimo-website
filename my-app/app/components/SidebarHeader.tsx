@@ -1,19 +1,24 @@
 'use client';
 
 import React from 'react';
-import { SiOpenaigym } from 'react-icons/si';
+import Image from 'next/image';
 import ThemeToggle from './ThemeToggle';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import m_m from '../assets/images/m_m.png';
 
 const SidebarHeader = () => {
 	const session = useSession();
+	console.log(session);
+
 	return (
 		<div className="flex items-center mb-4 gap-4 px-4">
 			<Link href={'/'}>
-				<SiOpenaigym className="w-10 h-10 text-primary" />
+				<div className="bg-sky-50 rounded-2xl shadow-lg">
+					<Image src={m_m} alt="logo" className="w-[200px] h-auto mr-3 " />
+				</div>
 			</Link>
-			<h2 className="text-xl font-extrabold text-primary mr-auto">Massimo & Massimo</h2>
+
 			<ThemeToggle />
 		</div>
 	);

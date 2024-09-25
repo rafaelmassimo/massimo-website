@@ -3,7 +3,7 @@
 import connectDB from '@/config/database';
 import Product from '@/models/product.model';
 
-export async function getAllCategories(userId: string) {
+export async function getAllCategories() {
 	//*this assure that we get unique categories
 	let categories = new Set<string>();
 
@@ -11,7 +11,7 @@ export async function getAllCategories(userId: string) {
 		await connectDB();
 		console.log('connected to db to get categories');
 
-		const res = await Product.find({ owner: userId });
+		const res = await Product.find({ });
 
 		if (res) {
 			res.forEach((product) => {

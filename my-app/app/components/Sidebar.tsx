@@ -8,14 +8,14 @@ import { getUserId } from '../actions/getUserId';
 
 const Sidebar = async () => {
 	const session = await getServerSession(options);
-	const userId = await getUserId(session?.user.email);
+	
 
 	return (
 		<>
 			<div className="px-4 w-fit min-h-full bg-base-300 py-12 flex flex-col">
 				<SidebarHeader />
 				<div>
-					<CategorySelector userId={userId?.toString() || ''} />
+					<CategorySelector />
 				</div>
 
 				{session && (
