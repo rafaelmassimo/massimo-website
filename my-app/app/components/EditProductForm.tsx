@@ -4,18 +4,14 @@
 
 import React, { useEffect, useState } from 'react';
 
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import deleteProduct from '../actions/deleteProduct';
 import { getOneProductById } from '../actions/getOneProduct';
 import { updateProduct } from '../actions/updateProduct';
-import { images } from '../assets/images/images';
 import DNALoader from './DNALoarder';
-import { productType } from '@/models/product.model';
-import { EditProductType } from '@/utils/types';
-import Link from 'next/link';
-import deleteProduct from '../actions/deleteProduct';
-import { set } from 'mongoose';
 
 const EditProductForm = () => {
 	const route = useRouter();
