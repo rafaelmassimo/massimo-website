@@ -2,6 +2,7 @@ import mongoose, { Model, Schema, Types, model } from 'mongoose';
 
 export type productType = {
 	owner?: Types.ObjectId | string;
+	_id?: Types.ObjectId | string;
 	id?: Types.ObjectId | string;
 	productName: string;
 	productDescription: string;
@@ -53,6 +54,7 @@ const ProductSchema = new Schema(
 		timestamps: true,
 	},
 );
-const Product = mongoose.models?.Product || model<productType, ProductModel>('Product', ProductSchema);
+const Product =
+	mongoose.models?.Product || model<productType, ProductModel>('Product', ProductSchema);
 
 export default Product;

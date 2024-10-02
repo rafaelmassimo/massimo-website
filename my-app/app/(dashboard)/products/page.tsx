@@ -1,11 +1,12 @@
-import React from 'react'
+import ProductCard from '@/app/components/ProductCard';
+import React, { Suspense } from 'react';
 
 const ProductsPage = () => {
-  return (
-    <div className='bg-primary'>
-      Products
-    </div>
-  )
-}
+	return (
+		<Suspense>
+			<ProductCard />
+		</Suspense>
+	);
+};
 
-export default ProductsPage
+export default ProductsPage;
