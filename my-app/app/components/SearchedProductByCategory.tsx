@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import filterProduct from '../actions/filterProduct';
-import { get } from 'http';
 import { productType } from '@/models/product.model';
 
-const SearchProduct = ({ category }: { category: string }) => {
+const SearchedProductByCategory = ({ category }: { category: string }) => {
 	const [products, setProducts] = useState<productType[]>([]);
 
 	useEffect(() => {
@@ -41,4 +40,4 @@ const SearchProduct = ({ category }: { category: string }) => {
 	);
 };
 
-export default SearchProduct;
+export default SearchedProductByCategory;

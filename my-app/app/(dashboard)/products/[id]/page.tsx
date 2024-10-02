@@ -1,5 +1,5 @@
 'use client';
-import SearchProduct from '@/app/components/SearchProduct';
+import SearchedProductByCategory from '@/app/components/SearchedProductByCategory';
 import { useParams } from 'next/navigation';
 import React, { Suspense } from 'react';
 
@@ -7,7 +7,7 @@ const SearchResult = () => {
 	const {id: category} = useParams();
 	return (
 		<Suspense>
-			<SearchProduct category={category as unknown as string} />
+			<SearchedProductByCategory category={category as unknown as string} />
 		</Suspense>
 	);
 };
