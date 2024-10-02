@@ -22,6 +22,9 @@ const CategorySelector = () => {
 				</div>
 				<div className="collapse-content">
 					<ul className="menu  min-h-full w-auto p-4 items-center text-accent">
+					<li className="mr-4 text-lg text-primary">
+					<Link href={`/products`}>Todos Os Produtos</Link>
+						</li>
 						{categories?.map((category: string) => {
 							return (
 								<li className="mr-4 text-lg" key={category}>

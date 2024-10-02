@@ -1,64 +1,52 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { productType } from '@/models/product.model';
-import { getAllProducts } from '../actions/getAllProducts';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { Session } from 'inspector/promises';
+import Slider from './Slider';
 
-const ProductCard = () => {
-	const { data: session } = useSession();
-	console.log('this is from products', session);
-
-	const [products, setProducts] = useState<productType[]>([]);
-
-	useEffect(() => {
-		const getProducts = async () => {
-			const allProduct = await getAllProducts();
-			console.log(allProduct);
-
-			setProducts(allProduct);
-		};
-		getProducts();
-	}, []);
-
+const ProductCard = ({	product, session, }: { product: productType; session?: Session; }) => {
 	return (
-		<section className="px-4 py-6 bg-base-200 min-h-screen">
-			<div className="container-xl lg:container m-auto">
-				<h2 className="text-3xl font-bold text-primary mb-6 text-center">Produtos</h2>
-			</div>
-
-			<div>
-				{products.map((product: productType) => {
-					return (
-						<div
-							key={product._id?.toString() || ''}
-							className="flex flex-col lg:flex-row bg-base-100 rounded-lg shadow-lg p-4 mb-4"
-						>
-							<img
-								src={product.productImages?.[0]}
-								alt={product.productName}
-								className="w-48 h-48 object-cover rounded-lg"
-							/>
-							<div className="flex flex-col justify-between ml-4">
-								<h3 className="text-xl font-semibold text-blue-500">{product.productName}</h3>
-								<p className="text-lg text-gray-500">{product.productDescription}</p>
-								<p className="text-lg font-semibold text-blue-500">{product.category}</p>
-								<p className="text-lg font-semibold text-blue-500">Codigo: {product.productCode}</p>
+		<div key={product._id?.toString()}>
+			<div className="flex flex-col justify-end  rounded-xl shadow-md relative bg-base-100 min-h-[510px] min-w-[440px] mt-2 transform transition-transform duration-300 hover:scale-[1.02]">
+            <Slider images={product.productImages as string[]}/>
+				<div className="p-4">
+					<div className="text-left md:text-center lg:text-left mb-6 h-full">
+					
+							<div>
+								<p className="text-accent">Nome Produto:</p>
+								<span className="flex text-xl text-primary font-bold p-1 h-9 overflow-y-scroll no-scrollbar">
+									{product.productName}
+								</span>
 							</div>
-							{session && (
-								<Link
-									href={`/add-product/${product._id?.toString()}`}
-									className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
-								>
-									Editar Produto
-								</Link>
-							)}
-						</div>
-					);
-				})}
+
+					</div>
+                    <div className="bg-base-200 rounded-md p-3 min-h-40 max-h-40 no-scrollbar overflow-y-auto cursor-ns-resize shadow-inner">
+						<pre className="whitespace-pre-wrap text-left text-secondary">{product.productDescription}</pre>
+					</div>
+
+					<div className="flex flex-row items-start p-2 mb-4 ">
+						<div className="text-accent">Categoria:</div>
+						<p className="ml-2 text-secondary">{product.category}</p>
+					</div>
+
+					<div className="flex flex-row items-start p-2 mb-4 ">
+						<div className="text-accent">Código Identificador:</div>
+						<p className="ml-2 text-secondary">{product.productCode}</p>
+					</div>
+
+					{session && (
+						<Link
+							href={`/add-product/${product._id?.toString()}`}
+							className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+						>
+							Editar Produto
+						</Link>
+					)}
+				</div>
 			</div>
-		</section>
+		</div>
 	);
 };
 

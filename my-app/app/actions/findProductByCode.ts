@@ -3,7 +3,7 @@
 import connectDB from '@/config/database';
 import Product from '@/models/product.model';
 
-export async function getProductByCode(code: string) {
+export async function findProductByCode(code: string) {
     try {
         await connectDB();
 

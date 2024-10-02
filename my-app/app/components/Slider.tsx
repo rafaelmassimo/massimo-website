@@ -12,9 +12,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-import { images } from '@/app/assets/images/images';
 
-const Slider = () => {
+
+const Slider = ({images}:{images: string[]}) => {
 	return (
 		<div className="container">
 			<Swiper
@@ -32,7 +32,8 @@ const Slider = () => {
 				{images.map((image, index) => (
 					<SwiperSlide key={index}>
 						<div className="flex h-full w-full items-center justify-center">
-							<Image src={image.src} alt="image" className="block h-full object-cover" />
+							{/* //* Add fill to avoid to add width and height to the image */}
+							<Image src={image} alt="image" className="block h-full object-cover" fill priority />
 						</div>
 					</SwiperSlide>
 				))}

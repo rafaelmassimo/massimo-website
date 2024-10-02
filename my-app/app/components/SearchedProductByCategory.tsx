@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import filterProduct from '../actions/filterProduct';
+import filterProduct from '../actions/filterProductByCategory';
 import { productType } from '@/models/product.model';
 
 const SearchedProductByCategory = ({ category }: { category: string }) => {
