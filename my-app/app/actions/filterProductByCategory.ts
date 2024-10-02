@@ -3,7 +3,7 @@
 import connectDB from '@/config/database';
 import Product from '@/models/product.model';
 
-export default async function filterProduct(query: string) {
+export default async function filterProductByCategory(query: string) {
 	try {
         await connectDB();
 
