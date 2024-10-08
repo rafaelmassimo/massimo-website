@@ -40,7 +40,7 @@ const SearchResult = () => {
 								Voltar para a Página de Produtos
 							</span>
 						</Link>
-						<h2 className="text-3xl font-bold text-secondary mb-6 text-center ">{category}</h2>
+						<h2 className="text-3xl font-bold text-secondary mb-6 text-center underline underline-offset-3 ">{category}</h2>
 						<div className="grid items-center grid-cols-2 gap-36">
 							{products.map((product, index) => (
 								<div key={index} className="w-full">

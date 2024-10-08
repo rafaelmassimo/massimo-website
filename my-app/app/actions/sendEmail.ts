@@ -1,6 +1,7 @@
 'use server';
 import sgMail from '@sendgrid/mail';
 
+
 sgMail.setApiKey(process.env.SENBGRID_API_KEY ?? '');
 
 export const sendEmail = async (formData: FormData) => {
@@ -18,7 +19,7 @@ export const sendEmail = async (formData: FormData) => {
 	try {
 		const res = await sgMail.send(msg);
 		if (res[0].statusCode === 202) {
-			return { status: 200 };
+            return { status: 200 };
 		}
 	} catch (error) {
 		console.error(error);

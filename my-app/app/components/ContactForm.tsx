@@ -1,13 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { sendEmail } from '../actions/sendEmail';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation';
+import DNALoader from './DNALoarder';
 
 const ContactForm = () => {
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const [loading, setLoading] = useState<boolean>(false);
 
+	const router = useRouter();
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		setLoading(true);
 		e.preventDefault();
 		const formData = new FormData(e.target as HTMLFormElement);
 
@@ -15,11 +20,14 @@ const ContactForm = () => {
 			const res = await sendEmail(formData);
 			if (res && res.status === 200) {
 				toast.success('Mensagem enviada com sucesso!');
+				setLoading(false);
+				router.push('/success');
 			}
 
 			(e.target as HTMLFormElement).reset(); // Reset the form after submission
 		} catch (error) {
 			toast.error('Erro ao enviar a mensagem. Tente novamente.');
+			setLoading(false);
 		}
 	};
 
@@ -60,12 +68,18 @@ const ContactForm = () => {
 					/>
 				</div>
 
-				<button
-					type="submit"
-					className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-				>
-					Enviar Mensagem
-				</button>
+				{loading ? (
+					<DNALoader height={70} width={70} />
+				) : (
+					<button
+						type="submit"
+						className="
+					flex items-center justify-center 
+					text-gray-900  bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+					>
+						Enviar Mensagem
+					</button>
+				)}
 			</form>
 		</div>
 	);
