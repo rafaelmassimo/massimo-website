@@ -10,7 +10,6 @@ import { GiExitDoor } from "react-icons/gi";
 import { Session } from 'inspector/promises';
 
 
-
 const Sidebar = async () => {
 	const session = await getServerSession(options);
 
@@ -26,8 +25,8 @@ const Sidebar = async () => {
 
 			{/* Buttons (Add Product, Find Product) */}
 			{session && (
-				<div className="flex flex-col items-center justify-center gap-5 p-4 rounded-xl bg-base-100 border border-sky-600">
-					<h2 className='text-secondary font-semibold'>Botões apenas para uso de Elisvaldo</h2>
+				<div className="flex flex-col items-center justify-center gap-5 p-4 rounded-xl bg-lime-200 border border-lime-400">
+					<h2 className='text-secondary font-semibold font-'>Botões apenas para uso de Elisvaldo</h2>
 					{/* ADD PRODUCT BUTTON */}
 					<Link href={'/add-product'}>
 						<button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-base-100 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-orange-200">

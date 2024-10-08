@@ -39,7 +39,7 @@ const Footer = async () => {
 			</nav>
 			
 		</footer>
-		<div className="flex justify-end items-center absolute  right-2 z-10">
+		<div className="flex justify-end items-center relative m-[-20px] bottom-0 right-5 z-10">
 				<Link href="/api/auth/signin">
 					<FaRegCopyright className="h-5 w-5 text-blue-400" />
 				</Link>

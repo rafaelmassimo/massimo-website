@@ -9,6 +9,8 @@ import User from '@/models/user.model';
 import Product from '@/models/product.model';
 
 async function deleteProduct(productId: string, owner: string) {
+	console.log('Connected to deleteProduct');
+	
 	const session = await getServerSession(options);
 
 	if (!session) {
@@ -40,8 +42,9 @@ async function deleteProduct(productId: string, owner: string) {
 	}
 
 	// Proceed with property deletion
-	await Product.deleteOne();
-
+	const res = await Product.deleteOne();
+	console.log(res);
+	
 	revalidatePath('/products', 'page');
 }
 
