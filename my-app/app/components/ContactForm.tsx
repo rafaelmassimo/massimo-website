@@ -1,10 +1,32 @@
+'use client';
+
 import React from 'react';
+import { toast } from 'react-toastify';
+import { sendEmail } from '../actions/sendEmail';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const ContactForm = () => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+		e.preventDefault();
+		const formData = new FormData(e.target as HTMLFormElement);
+
+		try {
+			const res = await sendEmail(formData);
+			if (res && res.status === 200) {
+				toast.success('Mensagem enviada com sucesso!');
+			}
+
+			(e.target as HTMLFormElement).reset(); // Reset the form after submission
+		} catch (error) {
+			toast.error('Erro ao enviar a mensagem. Tente novamente.');
+		}
+	};
+
 	return (
 		<div>
 			<h2 className="text-primary text-center text-xl mb-5">Entre em Contato Com Elisvaldo</h2>
-			<form className="flex flex-col justify-center items-center">
+			<form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
 				<div className="flex flex-col justify-center items-center mb-4 w-10/12 gap-5">
 					<label htmlFor="emailClient">
 						<p className="text-secondary text-xl">Seu E-mail</p>
@@ -39,7 +61,7 @@ const ContactForm = () => {
 				</div>
 
 				<button
-					type="button"
+					type="submit"
 					className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
 				>
 					Enviar Mensagem
