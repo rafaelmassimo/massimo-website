@@ -32,7 +32,7 @@ const ProductsPage = () => {
 					</div>
 				) : (
 					<>
-						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Produtos:</h2>
+						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Todos os Produtos:</h2>
 						<div className="grid items-center grid-cols-2 gap-36">
 							{products.map((product, index) => (
 								<div key={index} className="w-full">
