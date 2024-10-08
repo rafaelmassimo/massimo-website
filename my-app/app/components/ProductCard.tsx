@@ -22,7 +22,9 @@ const ProductCard = ({	product, session, }: { product: productType; session?: Se
 							</div>
 
 					</div>
+					<p className="text-accent">Descrição Produto:</p>
                     <div className="bg-base-200 rounded-md p-3 min-h-40 max-h-40 no-scrollbar overflow-y-auto cursor-ns-resize shadow-inner">
+
 						<pre className="whitespace-pre-wrap text-left text-secondary">{product.productDescription}</pre>
 					</div>
 

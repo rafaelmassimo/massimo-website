@@ -4,12 +4,15 @@ import filterProductByCategory from '@/app/actions/filterProductByCategory';
 import BallTriangleLoader from '@/app/components/BallTriangleLoader';
 import ProductCard from '@/app/components/ProductCard';
 import { productType } from '@/models/product.model';
+import { Session } from 'inspector/promises';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 const SearchResult = () => {
+	const { data: session } = useSession();
 	const { id: category } = useParams();
 	const [products, setProducts] = useState<productType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -41,7 +44,7 @@ const SearchResult = () => {
 						<div className="grid items-center grid-cols-2 gap-36">
 							{products.map((product, index) => (
 								<div key={index} className="w-full">
-									<ProductCard product={product} />
+									<ProductCard product={product} session={session as unknown as Session} />
 								</div>
 							))}
 						</div>

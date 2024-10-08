@@ -154,7 +154,7 @@ const AddProductForm = () => {
 							<h3 className="text-secondary mb-4 text-left">Imagens:</h3>
 
 							{images.map((image: any, index: number) => (
-								<div className="badge badge-secondary text-base-100 my-1" key={index}>
+								<div className="badge badge-secondary text-base-100 my-1 p-5" key={index}>
 									{image.name}
 								</div>
 							))}
