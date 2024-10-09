@@ -2,14 +2,13 @@
 
 import React from 'react';
 import Image from 'next/image';
-import ThemeToggle from './ThemeToggle';
+// import ThemeToggle from './ThemeToggle';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import m_m from '../assets/images/m_m.png';
 
 const SidebarHeader = () => {
 	const session = useSession();
-	console.log(session);
 
 	return (
 		<div className="flex items-center mb-4 gap-4 px-4">
@@ -19,7 +18,7 @@ const SidebarHeader = () => {
 				</div>
 			</Link>
 
-			<ThemeToggle />
+			
 		</div>
 	);
 };

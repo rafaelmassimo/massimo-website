@@ -5,7 +5,7 @@ import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 const themes = {
 	halloween: 'winter',
-	autumn: 'dracula',
+	autumn: 'luxury',
 	// cyberpunk: 'cyberpunk',
 };
 

@@ -87,7 +87,7 @@ const AddProductForm = () => {
 				<div className="flex flex-col justify-center items-center mb-4 gap-2">
 					{/* PRODUCT NAME */}
 					<label htmlFor="productName">
-						<p className="text-primary text-xl">Nome Produto</p>
+						<p className="text-gray-700 text-xl">Nome Produto</p>
 					</label>
 					<input
 						type="text"
@@ -99,7 +99,7 @@ const AddProductForm = () => {
 					/>
 					{/* PRODUCT DESCRIPTION */}
 					<label htmlFor="productDescription">
-						<p className="text-primary text-xl">Descrição Produto</p>
+						<p className="text-gray-700 text-xl">Descrição Produto</p>
 					</label>
 
 					<textarea
@@ -111,9 +111,9 @@ const AddProductForm = () => {
 
 					{/* CATEGORY */}
 					<label htmlFor="category">
-						<p className="text-primary text-xl text-center">Categoria</p>
+						<p className="text-gray-700 text-xl text-center">Categoria</p>
 						<p className=" text-md italic text-accent">
-							( Tenta usar corretamente as categorias sem criar várias desnecessárias )
+							( Prima Letra Maiuscola e no SINGULAR )
 						</p>
 					</label>
 					<input
@@ -126,13 +126,13 @@ const AddProductForm = () => {
 					/>
 
 					{/* PRODUCT IMAGES */}
-					<p className="text-primary text-xl text-center">Imagens do Produto</p>
-					<p className=" text-md italic text-accent">( Agora adicione as fotos do novo produto )</p>
+					<p className="text-gray-700 text-xl text-center">Imagens do Produto</p>
+					<p className=" text-md italic text-accent">( Agora adicione até 5 fotos do novo produto )</p>
 					<label
 						htmlFor="productImages"
 						className={` ${
 							images.length === 5
-								? 'bg-gray-200 text-primary cursor-not-allowed'
+								? 'bg-gray-200 text-gray-700 cursor-not-allowed'
 								: 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 cursor-pointer'
 						} font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 `}
 					>

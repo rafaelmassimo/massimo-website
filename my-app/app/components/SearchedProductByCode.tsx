@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 import { productType } from '@/models/product.model';
-import { getProductByCode } from '../actions/findProductByCode';
 import DNALoader from './DNALoarder';
+import { findProductByCode } from '../actions/findProductByCode';
 
 const SearchedProductByCode = ({ code }: { code: string }) => {
 	const [product, setProduct] = useState<productType>();
 
 	useEffect(() => {
 		const getProduct = async () => {
-			const filteredProduct = await getProductByCode(code);            
+			const filteredProduct = await findProductByCode(code);
 			setProduct(filteredProduct);
 		};
 		getProduct();
 	}, [code]);
 
+	
+
 	return (
-		<section className="px-4 py-6 bg-base-200 min-h-screen">
+		<section className="px-4 py-6 bg-slate-200 min-h-screen">
 			<div className="container-xl lg:container m-auto">
 				<h2 className="text-3xl font-bold text-primary mb-6 text-center">
 					{product ? product.productName : <DNALoader />}
@@ -25,9 +27,7 @@ const SearchedProductByCode = ({ code }: { code: string }) => {
 
 			{product && (
 				<div>
-					<div
-						className="flex flex-col lg:flex-row bg-base-100 rounded-lg shadow-lg p-4 mb-4"
-					>
+					<div className="flex flex-col lg:flex-row bg-base-100 rounded-lg shadow-lg p-4 mb-4">
 						<img
 							src={product.productImages?.[0]}
 							alt={product.productName}

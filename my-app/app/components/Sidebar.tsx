@@ -14,7 +14,7 @@ const Sidebar = async () => {
 	const session = await getServerSession(options);
 
 	return (
-		<div className="px-4 w-fit min-h-full bg-base-300 py-12 grid grid-rows-[auto_1fr_auto] gap-4">
+		<div className="px-4 w-fit min-h-full bg-slate-200 py-12 grid grid-rows-[auto_1fr_auto] gap-4">
 			{/* Sidebar Header at the top */}
 			<SidebarHeader />
 

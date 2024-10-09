@@ -14,22 +14,34 @@ const CategorySelector = ({ session }: { session?: Session }) => {
 
 	return (
 		<>
-			<div className="collapse bg-base-200">
+			<div className="collapse bg-slate-400">
 				<input type="checkbox" onClick={handleClick} />
-				<div className="btn collapse-title text-xl font-medium text-center text-secondary">
+				<div className="btn collapse-title text-xl font-medium pr-2 text-gray-900">
 					Categorias
 				</div>
 				<div className="collapse-content">
-					<div className={`${session ? 'max-h-60 overflow-y-scroll' : null}`}>
-						<ul className="menu  min-h-full w-auto p-4 items-center text-accent">
-							<li className="mr-4 text-lg text-primary">
-								<Link href={`/products`}>Todos Os Produtos</Link>
-							</li>
+					<div className={`${ session ? 'max-h-60 overflow-y-scroll' : null }`} >
+						<ul className="menu min-h-full w-auto p-4 items-center ">
+								<li>
+									<Link
+										href={`/products`}
+										className="w-56 font-medium items-center bg-slate-50 rounded-xl mb-2 text-lg text-slate-700 hover:bg-slate-600 hover:text-white"
+									>
+										Todos Os Produtos
+									</Link>
+								</li>
 							{categories?.map((category: string) => {
 								return (
-									<li className="mr-4 text-lg" key={category}>
-										<Link href={`/products/${category}`}>{category}</Link>
-									</li>
+									<div>
+										<li key={category}>
+											<Link
+												href={`/products/${category}`}
+												className="flex justify-center  w-56 text-center text-lg text-black bg-slate-50 rounded-xl my-1 hover:bg-slate-600 hover:text-white"
+											>
+												{category}
+											</Link>
+										</li>
+									</div>
 								);
 							})}
 						</ul>
