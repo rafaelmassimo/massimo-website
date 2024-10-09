@@ -60,7 +60,7 @@ const EditProductForm = () => {
 				updatedProduct,
 			);
 			if (res?.success) {
-				toast.success(res?.success);
+				toast.success(res?.success.toString());
 				route.push('/products');
 			}
 		} catch (error) {
@@ -81,7 +81,7 @@ const EditProductForm = () => {
 					<div className="flex flex-col justify-center items-center mb-4 gap-2">
 						{/* PRODUCT NAME */}
 						<label htmlFor="productName">
-							<p className="text-primary text-xl">Nome Produto</p>
+							<p className="text-gray-700 text-xl">Nome Produto</p>
 						</label>
 						<input
 							type="text"
@@ -95,7 +95,7 @@ const EditProductForm = () => {
 						/>
 						{/* PRODUCT DESCRIPTION */}
 						<label htmlFor="productDescription">
-							<p className="text-primary text-xl">Descrição Produto</p>
+							<p className="text-gray-700 text-xl">Descrição Produto</p>
 						</label>
 
 						<textarea
@@ -109,9 +109,9 @@ const EditProductForm = () => {
 
 						{/* CATEGORY */}
 						<label htmlFor="category">
-							<p className="text-primary text-xl text-center">Categoria</p>
+							<p className="text-gray-700 text-xl text-center">Categoria</p>
 							<p className=" text-md italic text-accent">
-								( Tenta usar corretamente as categorias sem criar várias desnecessárias )
+								(  Prima Letra Maiuscola e no SINGULAR )
 							</p>
 						</label>
 						<input
@@ -126,9 +126,9 @@ const EditProductForm = () => {
 						/>
 
 						{/* PRODUCT IMAGES */}
-						<p className="text-primary text-xl text-center">Imagens do Produto</p>
+						<p className="text-gray-700 text-xl text-center">Imagens do Produto</p>
 						<p className=" text-md italic text-accent">
-							( Agora adicione as fotos do novo produto )
+							( Nao tem como editar as imagens, se precisar trocar, delete e crie um novo )
 						</p>
 
 						{newProduct.productImages.length > 0 && (

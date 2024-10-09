@@ -33,7 +33,7 @@ const ProductsPage = () => {
 				) : (
 					<>
 						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Todos os Produtos:</h2>
-						<div className="lg:grid items-center grid-cols-2 gap-36">
+						<div className="lg:grid items-center grid-cols-2 gap-6">
 							{products.map((product, index) => (
 								<div key={index} className="w-full my-5">
 									<ProductCard

@@ -25,7 +25,7 @@ const CategorySelector = ({ session }: { session?: Session }) => {
 								<li>
 									<Link
 										href={`/products`}
-										className="w-56 font-medium items-center bg-slate-50 rounded-xl mb-2 text-lg text-slate-700 hover:bg-slate-600 hover:text-white"
+										className="w-56 flex flex-row items-center justify-center font-medium text-center bg-slate-50 rounded-xl mb-2 text-lg text-slate-700 hover:bg-slate-600 hover:text-white"
 									>
 										Todos Os Produtos
 									</Link>

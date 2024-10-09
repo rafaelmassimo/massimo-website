@@ -18,7 +18,7 @@ export async function updateProduct(productId: string, owner: string, productDat
         if (!newProduct) {
             throw new Error('Product not found');
         } else {
-            return { success: 'Product updated successfully' };
+            return { success: 'Produto Atualizado com Sucesso' };
         }
 	} catch (error) {
 		console.error('Error updating product:', error);

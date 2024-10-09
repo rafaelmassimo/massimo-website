@@ -70,7 +70,7 @@ const AddProductForm = () => {
 			//* CALL THE ADD PRODUCT ACTION
 			const res = await addProduct(userData);
 			if (res?.success) {
-				toast.success(res?.success);
+				toast.success(res?.success.toString());
 				route.push('/products');
 			}
 		} catch (error) {

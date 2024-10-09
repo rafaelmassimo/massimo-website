@@ -57,7 +57,7 @@ export async function addProduct(userData: ProductType) {
 		const res = await newProduct.save(); //* Save the new product
 
 		if (res) {
-			return { success: 'Product added successfully' };
+			return { success: 'Produto Adicionado com Sucesso' };
 		}
 	} catch (error) {
 		console.error('Error adding product:', error);
