@@ -39,7 +39,7 @@ const FindProductForm = () => {
 					<div className="flex flex-col justify-center items-center gap-2">
 						{/* PRODUCT CODE */}
 						<label htmlFor="productCode">
-							<p className="text-primary text-xl">Adicione aqui o código do produto para buscar</p>
+							<p className="text-primary text-xl">Adicione aqui o código do produto</p>
 						</label>
 						<input
 							type="text"

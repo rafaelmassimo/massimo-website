@@ -36,9 +36,9 @@ const ProductCard = ({	product, session, }: { product: productType; session?: Se
 						<p className="ml-2 text-secondary">{product.category}</p>
 					</div>
 
-					<div className="flex flex-row items-start p-2 mb-4 ">
-						<div className="text-gray-800">Código Identificador:</div>
-						<p className="ml-2 text-secondary">{product.productCode}</p>
+					<div className="flex flex-row items-start mb-4 rounded-lg p-3 bg-slate-200 w-fit">
+						<div className="text-gray-800 font-medium">Código:</div>
+						<p className="ml-2 text-red-600 font-medium">{product.productCode}</p>
 					</div>
 
 					{session && (

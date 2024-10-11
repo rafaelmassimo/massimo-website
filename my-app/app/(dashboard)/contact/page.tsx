@@ -12,7 +12,7 @@ const ContactPage = () => {
 					<ContactForm />
 				</div>
 
-				{/* <div className="divider divider-accent text-accent">OU</div>
+				<div className="divider divider-accent text-accent">OU</div>
 
 				<div className="bg-base-300 px-6 py-8 mb-4 shadow-md rounded-lg border m-4 md:m-0">
 					<h2 className="text-primary text-center text-xl mb-5">Entre em Contato Por Telefone</h2>
@@ -32,8 +32,7 @@ const ContactPage = () => {
 							<SiWhatsapp className="text-lime-600 text-center ml-3 w-10 h-10 mt-4 hover:scale-110 transition-transform duration-300" />
 						</Link>
 					</div>
-					<SiWhatsapp />
-				</div> */}
+				</div>
 			</div>
 		</section>
 	);

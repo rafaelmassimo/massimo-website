@@ -80,7 +80,7 @@ const ContactForm = () => {
 					</label>
 					<input
 						type="text"
-						placeholder="Insira Aqui o Código do Produto"
+						placeholder="Exemplo: Bane46066"
 						name="productCode"
 						className="input input-bordered text-primary input-primary w-full max-w-xs"
 					/>

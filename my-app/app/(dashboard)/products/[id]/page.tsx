@@ -35,13 +35,13 @@ const SearchResult = () => {
 				) : (
 					<>
 						<Link href="/products" className="flex flex-row  text-blue-500 mt-2">
-							<span className=" flex justify-center bg-base-300 text-indigo-800 text-s me-2 px-2.5 py-0.5 rounded ">
+							<span className="flex justify-center bg-base-300 text-indigo-800 text-s me-2 px-2.5 py-0.5 rounded ">
 								<IoIosArrowRoundBack className="w-6 h-6" />
 								Voltar para a Página de Produtos
 							</span>
 						</Link>
-						<h2 className="text-3xl font-bold text-secondary mb-6 text-center underline underline-offset-3 ">{category}</h2>
-						<div className="grid items-center grid-cols-2 gap-36">
+						<h2 className="text-3xl font-bold text-secondary mb-6 text-center mt-6">Categoria: {category}</h2>
+						<div className="lg:grid justify-center items-center grid-cols-2 gap-6">
 							{products.map((product, index) => (
 								<div key={index} className="w-full">
 									<ProductCard product={product} session={session as unknown as Session} />

@@ -30,9 +30,9 @@ const CategorySelector = ({ session }: { session?: Session }) => {
 										Todos Os Produtos
 									</Link>
 								</li>
-							{categories?.map((category: string) => {
+							{categories?.map((category: string, index) => {
 								return (
-									<div>
+									<div key={index}>
 										<li key={category}>
 											<Link
 												href={`/products/${category}`}
