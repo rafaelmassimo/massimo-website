@@ -32,17 +32,24 @@ const ProductsPage = () => {
 					</div>
 				) : (
 					<>
-						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Todos os Produtos:</h2>
-						<div className="lg:grid items-center grid-cols-2 gap-6">
-							{products.map((product, index) => (
-								<div key={index} className="w-full my-5">
-									<ProductCard
-										product={product}
-										session={session as unknown as Session}
-									/>
+						{products.length === 0 ? (
+							<h2 className="text-3xl font-bold text-primary mb-6 text-center">
+								Nenhum Produto Disponível
+							</h2>
+						) : (
+							<>
+								<h2 className="text-3xl font-bold text-primary mb-6 text-center">
+									Todos os Produtos:
+								</h2>
+								<div className="lg:grid items-center grid-cols-2 gap-6">
+									{products.map((product, index) => (
+										<div key={index} className="w-full my-5">
+											<ProductCard product={product} session={session as unknown as Session} />
+										</div>
+									))}
 								</div>
-							))}
-						</div>
+							</>
+						)}
 					</>
 				)}
 			</div>

@@ -81,7 +81,7 @@ const EditProductForm = () => {
 					<div className="flex flex-col justify-center items-center mb-4 gap-2">
 						{/* PRODUCT NAME */}
 						<label htmlFor="productName">
-							<p className="text-gray-700 text-xl">Nome Produto</p>
+							<p className="text-gray-700 font-medium text-xl">Nome Produto</p>
 						</label>
 						<input
 							type="text"
@@ -95,7 +95,7 @@ const EditProductForm = () => {
 						/>
 						{/* PRODUCT DESCRIPTION */}
 						<label htmlFor="productDescription">
-							<p className="text-gray-700 text-xl">Descrição Produto</p>
+							<p className="text-gray-700 font-medium text-xl">Descrição Produto</p>
 						</label>
 
 						<textarea
@@ -109,9 +109,9 @@ const EditProductForm = () => {
 
 						{/* CATEGORY */}
 						<label htmlFor="category">
-							<p className="text-gray-700 text-xl text-center">Categoria</p>
-							<p className=" text-md italic text-accent">
-								(  Prima Letra Maiuscola e no SINGULAR )
+							<p className="text-gray-700 font-medium text-xl text-center">Categoria</p>
+							<p className=" text-md italic text-primary">
+								Categoria no <strong>SINGULAR</strong>
 							</p>
 						</label>
 						<input
@@ -125,13 +125,13 @@ const EditProductForm = () => {
 							onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
 						/>
 
-						{/* PRODUCT IMAGES */}
+						{/* PRODUCT IMAGES
 						<p className="text-gray-700 text-xl text-center">Imagens do Produto</p>
 						<p className=" text-md italic text-accent">
 							( Nao tem como editar as imagens, se precisar trocar, delete e crie um novo )
-						</p>
+						</p> */}
 
-						{newProduct.productImages.length > 0 && (
+						{/* {newProduct.productImages.length > 0 && (
 							<div className="flex flex-col justify-center items-center p-4 bg-base-200 rounded-lg">
 								<h3 className="text-secondary mb-4 text-left">Imagens:</h3>
 
@@ -143,7 +143,7 @@ const EditProductForm = () => {
 									</div>
 								))}
 							</div>
-						)}
+						)} */}
 
 						{/* SUBMIT SECTION */}
 						<div className="flex flex-col mt-10">

@@ -19,7 +19,7 @@ export async function getAllCategories() {
 			});
 		}
 
-		return Array.from(categories);
+		return Array.from(categories).sort();
 	} catch (error) {
 		console.log(error);
 		return null;

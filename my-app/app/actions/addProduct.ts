@@ -8,6 +8,7 @@ import User from '@/models/user.model';
 import options from '../api/auth/[...nextauth]/options';
 
 
+
 interface ProductType {
 	productName: string;
 	productDescription: string;
@@ -16,6 +17,11 @@ interface ProductType {
 }
 
 export async function addProduct(userData: ProductType) {
+	const upperCaseCategory = (sentence:string) => {
+	return sentence.slice(0,1).toUpperCase() + sentence.slice(1);
+
+	}
+
 	const session = await getServerSession(options);
 	
 	if (!session) {
@@ -46,7 +52,7 @@ export async function addProduct(userData: ProductType) {
 			productName: userData.productName,
 			productDescription: userData.productDescription,
 			productImages: uploadedImages,
-			category: userData.category,
+			category: upperCaseCategory(userData.category),
 			productCode: newCode,
 		});
 

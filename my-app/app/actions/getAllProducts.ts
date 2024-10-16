@@ -7,7 +7,7 @@ export async function getAllProducts() {
 	try {
 		await connectDB();
 
-		const res = await Product.find({});
+		const res = await Product.find({}).sort({createdAt: -1});
 
 		if (res) {
 			// Convert MongoDB document to plain object

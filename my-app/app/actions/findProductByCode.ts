@@ -7,7 +7,7 @@ export async function findProductByCode(code: string) {
 	try {
 		await connectDB();
 
-		const res = await Product.findOne({ productCode: code }).lean();
+		const res = await Product.findOne({ productCode: { $regex: new RegExp(`^${code}$`, 'i') } }).lean();
 		if (res) {
 			// Convert MongoDB document to plain object
 			const plainProduct = JSON.parse(JSON.stringify(res));
