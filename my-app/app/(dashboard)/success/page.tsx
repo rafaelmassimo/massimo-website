@@ -1,32 +1,25 @@
 'use client';
 
-import React from 'react';
-import cachorroImage from '@/app/assets/images/cachorro.jpeg';
 import { useRouter } from 'next/navigation';
 
 const SuccessPage = () => {
 	const router = useRouter();
+
+	const handleBackToHome = () => {
+		router.push('/products'); // Adjust to your homepage or another route
+	};
+
 	return (
-		<div
-			className="hero min-h-screen "
-			style={{
-				backgroundImage: `url(${cachorroImage.src})`,
-				borderRadius: '20px',
-			}}
-		>
-			<div className="hero-overlay bg-opacity-60 rounded-2xl"></div>
-			<div className="hero-content text-neutral-content text-center">
-				<div className="max-w-md">
-					<h1 className="mb-5 text-5xl font-bold">Parabens!</h1>
-					<div className="bg-black rounded-xl opacity-90">
-						<p className="mb-5 text-xl z-100">
-							Provalmente irei esquecer de te responder, mas obrigado por entrar em contato!
-						</p>
-					</div>
-					<button className="btn btn-primary" onClick={() => router.push('/products')}>
-						Voltar
-					</button>
-				</div>
+		<div className="flex items-center justify-center min-h-screen bg-gray-100">
+			<div className="bg-white p-8 shadow-lg rounded-lg max-w-md text-center">
+				<h1 className="text-3xl font-bold text-green-500 mb-4 tracking-wide">Mensagem Enviada!</h1>
+				<p className="text-gray-700 mb-6 tracking-wide">Sua mensagem foi enviada e responderemos assim que possível!</p>
+				<button
+					onClick={handleBackToHome}
+					className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+				>
+					Voltar para a Home
+				</button>
 			</div>
 		</div>
 	);

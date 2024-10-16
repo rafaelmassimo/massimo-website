@@ -18,7 +18,9 @@ const ProductsPage = () => {
 	useEffect(() => {
 		const getProducts = async () => {
 			const allProduct = await getAllProducts();
-			setProducts(allProduct);
+			if (allProduct) {
+				setProducts(allProduct);
+			}
 			setLoading(false);
 		};
 		getProducts();
