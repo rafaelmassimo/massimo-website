@@ -20,7 +20,7 @@ async function deleteProduct(productId: string, owner: string) {
 	await connectDB();
 
 	const product = await Product.findById(productId);
-
+	
 	if (!product) throw new Error('Product Not Found');
 
 	// Verify ownership
@@ -42,10 +42,9 @@ async function deleteProduct(productId: string, owner: string) {
 	}
 
 	// Proceed with property deletion
-	const res = await Product.deleteOne();
+	const res = await Product.deleteOne({ _id: productId });
 	console.log(res);
 	
-	revalidatePath('/products', 'page');
 }
 
 export default deleteProduct;
