@@ -2,10 +2,14 @@ import connectDB from '@/config/database';
 import User from '@/models/user.model';
 import { UserTypeImported } from '@/utils/types';
 import bcrypt from 'bcrypt';
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions, Session } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 
-
+declare module 'next-auth' {
+	interface Session {
+		maxAge?: number;
+	}
+}
 
 const options: NextAuthOptions = {
 	providers: [
@@ -62,13 +66,25 @@ const options: NextAuthOptions = {
 		},
 		//this has to be async
 		session: async ({ session, token }) => {
-			//Here I'm getting the data from the user from the DB to save it in the session
-			const userData = await User.findOne({ email: token.email }).lean().exec();
-			if (session.user) {
-				//if you do not have a role it will be a *user* as defined below
-				session.user.role = token.role || 'ADMIN';
-				session.user.name = userData?.username;
+			// Here I'm getting the data from the user from the DB to save it in the session
+
+			try {
+				await connectDB();
+				console.log('Token:', token);
+				console.log('inside session callback');
+				const userData = await User.findOne({ email: token.email }).lean().exec();
+				if (session.user) {
+					// if you do not have a role it will be a *user* as defined below
+					session.user.role = token.role || 'ADMIN';
+					session.user.name = userData?.username;
+				}
+				session.maxAge = 30 * 24 * 60 * 60; // 30 days
+				console.log('Session:', session);
+				
+			} catch (error) {
+				console.log('Error:', error);
 			}
+
 			return session;
 		},
 	},

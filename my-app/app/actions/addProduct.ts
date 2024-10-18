@@ -7,8 +7,6 @@ import { getServerSession } from 'next-auth';
 import User from '@/models/user.model';
 import options from '../api/auth/[...nextauth]/options';
 
-
-
 interface ProductType {
 	productName: string;
 	productDescription: string;
