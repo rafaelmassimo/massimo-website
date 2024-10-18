@@ -23,7 +23,7 @@ const connectDB = async (): Promise<void> => {
 		}
 		await mongoose.connect(mongoUri);
 		connected = true;
-		console.log('MongoDB is already connected 🤩');
+		console.log('MongoDB is connected 🤩');
 		return;
 	} catch (error) {
 		console.log(error);
