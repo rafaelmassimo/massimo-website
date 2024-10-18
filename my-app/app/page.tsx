@@ -8,7 +8,6 @@ import connectDB from '@/config/database';
 export default async function Home() {
 	// const user = await addUser('Elisvaldo', 'elisvaldo07@hotmail.com', 'carronovocarrovelho');
 	const randomVideo = Math.floor(Math.random() * videosOption.length);
-	await connectDB();
 	return (
 		<>
 			<section className="relative h-screen">
