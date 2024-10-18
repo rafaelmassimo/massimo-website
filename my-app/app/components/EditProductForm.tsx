@@ -3,8 +3,6 @@
 // export const dynamic = 'force-dynamic';
 
 import React, { useEffect, useState } from 'react';
-
-import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,11 +10,13 @@ import deleteProduct from '../actions/deleteProduct';
 import { getOneProductById } from '../actions/getOneProduct';
 import { updateProduct } from '../actions/updateProduct';
 import DNALoader from './DNALoarder';
+import { set } from 'mongoose';
 
 const EditProductForm = () => {
 	const route = useRouter();
 	const { id } = useParams();
 	const [loading, setLoading] = useState<boolean>(false);
+	const [loadingButtons, setLoadingButtons] = useState<boolean>(false);
 	const [newProduct, setNewProduct] = useState<any>({
 		owner: '',
 		productId: '',
@@ -67,6 +67,25 @@ const EditProductForm = () => {
 			console.error('Error adding product:', error);
 		} finally {
 			setLoading(false);
+		}
+	};
+
+	const handleDelete = async () => {
+		try {
+			setLoadingButtons(true);
+			const res = await deleteProduct(newProduct.productId, newProduct.owner);
+
+			if (res?.status !== 200) {
+				toast.error(res?.message?.toString());
+				setLoadingButtons(false);
+			} else {
+				setLoadingButtons(false);
+				toast.success(res?.message?.toString());
+				route.push('/products');
+			}
+		} catch (error) {
+			console.error('Error deleting product:', error);
+			toast.warning('Failed to delete product');
 		}
 	};
 
@@ -147,7 +166,7 @@ const EditProductForm = () => {
 
 						{/* SUBMIT SECTION */}
 						<div className="flex flex-col mt-10">
-							{loading ? (
+							{loadingButtons ? (
 								<DNALoader />
 							) : (
 								<>
@@ -173,11 +192,7 @@ const EditProductForm = () => {
     bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700 hover:bg-gradient-to-br 
     focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
     font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-								onClick={() => {
-									deleteProduct(newProduct.productId, newProduct.owner)
-										.then(() => route.push('/products'))
-										.then(() => toast.success('Produto deletado com sucesso!'));
-								}}
+								onClick={handleDelete}
 							>
 								Deletar Produto
 							</button>

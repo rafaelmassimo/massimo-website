@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { videosOption } from '@/public/videos/videoExport';
 import logo from '@/app/assets/images/m_m.png';
 import Image from 'next/image';
-import { FaLongArrowAltRight } from "react-icons/fa";
+
 
 
 export default async function Home() {
-	const user = await addUser('Elisvaldo', 'elisvaldo07@hotmail.com', 'carronovocarrovelho');
+	// const user = await addUser('Elisvaldo', 'elisvaldo07@hotmail.com', 'carronovocarrovelho');
 	const randomVideo = Math.floor(Math.random() * videosOption.length);
 
 	return (
@@ -19,9 +19,8 @@ export default async function Home() {
 				<div className="absolute w-full h-full bg-gradient-to-r from-black to-sky-900 opacity-60 z-10"></div>
 				{/* Filter overlay */}
 				<div className="absolute inset-0 flex flex-row items-center justify-center z-20">
-					<div className="flex justify-center items-center bg-gray-900/60 p-3 rounded-xl">
-						<Image src={logo} alt="logo" width={300} height={300} />
-
+					<div className="lg:flex justify-center items-center bg-gray-900/60 p-3 rounded-xl">
+						<Image className='mx-auto' src={logo} alt="logo" width={300} height={300} />
 						<div className="text-center">
 							<h1 className="text-5xl font-bold text-white">Seja Bem-Vindo</h1>
 							<h2 className="text-white text-xl mt-3">Conheça Nossos Trabalhos</h2>

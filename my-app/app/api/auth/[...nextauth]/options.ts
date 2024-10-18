@@ -15,7 +15,7 @@ const options: NextAuthOptions = {
 
 			async authorize(
 				credentials: Record<'email' | 'password', string> | undefined,
-			): Promise<User | null> {
+			): Promise<any | null> {
 				const { email, password } = credentials as { email: string; password: string };
 				if (!email || !password) {
 					return null;
