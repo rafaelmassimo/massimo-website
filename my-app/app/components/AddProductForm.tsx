@@ -30,7 +30,7 @@ const AddProductForm = () => {
 
 			const compressedImagesPromises = newFilesFormat.map(async (file) => {
 				const compressedFile = await imageCompression(file, {
-					maxSizeMB: 2, // Max size of each image (1MB in this case)
+					maxSizeMB: 1, // Max size of each image (1MB in this case)
 					maxWidthOrHeight: 1920, // Max width/height (optional)
 					useWebWorker: true, // For performance
 				});
