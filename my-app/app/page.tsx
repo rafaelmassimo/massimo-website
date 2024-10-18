@@ -13,7 +13,7 @@ export default async function Home() {
 		<>
 			<section className="relative h-screen">
 				<video className="absolute w-full h-full object-cover" autoPlay loop muted>
-					<source src={videosOption[randomVideo]} type="video/mp4" />
+					<source src={videosOption[randomVideo]} type="video/mp4"/>
 				</video>
 				<div className="absolute w-full h-full bg-gradient-to-r from-black to-sky-900 opacity-60 z-10"></div>
 				{/* Filter overlay */}
