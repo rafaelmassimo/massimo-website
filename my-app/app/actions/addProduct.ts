@@ -15,13 +15,12 @@ interface ProductType {
 }
 
 export async function addProduct(userData: ProductType) {
-	const upperCaseCategory = (sentence:string) => {
-	return sentence.slice(0,1).toUpperCase() + sentence.slice(1);
-
-	}
+	const upperCaseCategory = (sentence: string) => {
+		return sentence.slice(0, 1).toUpperCase() + sentence.slice(1);
+	};
 
 	const session = await getServerSession(options);
-	
+
 	if (!session) {
 		return { error: 'You need to be signed in to add a product' };
 	}
@@ -39,8 +38,7 @@ export async function addProduct(userData: ProductType) {
 			const uploadPromise = cloudinary.uploader
 				.upload(`${image.image}`, {
 					folder: 'massimo_massimo',
-					transformation: [{ width: 1920, height: 1080, quality: 'auto' }],
-					
+					transformation: [{ width: 1920, height: 'auto', quality: 'auto' }],
 				})
 				.then((result) => result.secure_url);
 			imagesUploadPromises.push(uploadPromise);
