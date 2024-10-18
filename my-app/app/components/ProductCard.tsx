@@ -5,14 +5,13 @@ import { productType } from '@/models/product.model';
 import Link from 'next/link';
 import { Session } from 'inspector/promises';
 import Slider from './Slider';
-import { Button } from "@/components/ui/button"
 
 
 const ProductCard = ({	product, session, }: { product: productType; session?: Session; }) => {
 
 	return (
 		<div key={product._id?.toString()}>
-			<div className="flex flex-col justify-end  rounded-xl shadow-md relative bg-base-100 min-h-[510px] min-w-[440px] max-w-[700px] mt-2 transform transition-transform duration-300 hover:scale-[1.02]">
+			<div className="flex flex-col justify-end rounded-xl shadow-md relative bg-base-100 min-h-[410px] lg:min-w-[440px] max-w-[700px] mt-2 transform transition-transform duration-300 hover:scale-[1.02]">
             <Slider images={product.productImages as string[]}/>
 				<div className="p-4">
 					<div className="text-left md:text-center lg:text-left mb-6 h-full">
