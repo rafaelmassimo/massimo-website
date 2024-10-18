@@ -1,7 +1,7 @@
 'use client';
 
 export const dynamic = 'force-dynamic';
-
+import imageCompression from 'browser-image-compression';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -15,7 +15,7 @@ const AddProductForm = () => {
 	const [images, setImages] = useState<File[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.target.files;
 
 		if (files) {
@@ -28,10 +28,18 @@ const AddProductForm = () => {
 				return;
 			}
 
-			const updatedImages = [...images, ...newFilesFormat];
+			const compressedImagesPromises = newFilesFormat.map(async (file) => {
+				const compressedFile = await imageCompression(file, {
+					maxSizeMB: 1, // Max size of each image (1MB in this case)
+					maxWidthOrHeight: 800, // Max width/height (optional)
+					useWebWorker: true, // For performance
+				});
+				return compressedFile;
+			});
 
-			// Update the state
-			setImages(updatedImages);
+			const compressedImages = await Promise.all(compressedImagesPromises);
+
+			setImages([...images, ...compressedImages]);
 		}
 	};
 
@@ -75,7 +83,6 @@ const AddProductForm = () => {
 			}
 		} catch (error) {
 			console.error('Error adding product:', error);
-
 		} finally {
 			setLoading(false);
 		}
@@ -113,7 +120,7 @@ const AddProductForm = () => {
 					<label htmlFor="category">
 						<p className="text-gray-700 font-medium text-xl text-center">Categoria</p>
 						<p className=" text-md italic text-primary">
-							Adicionar a Categoria no <strong>SINGULAR</strong> (Ex: Carderno e Não Cadernos) 
+							Adicionar a Categoria no <strong>SINGULAR</strong> (Ex: Carderno e Não Cadernos)
 						</p>
 					</label>
 					<input
