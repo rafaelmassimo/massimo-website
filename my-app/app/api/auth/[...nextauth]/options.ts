@@ -17,6 +17,8 @@ const options: NextAuthOptions = {
 				credentials: Record<'email' | 'password', string> | undefined,
 			): Promise<any | null> {
 				const { email, password } = credentials as { email: string; password: string };
+				console.log('Credentials');
+				
 				if (!email || !password) {
 					return null;
 				}
