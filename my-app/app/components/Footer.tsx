@@ -9,7 +9,7 @@ const Footer = async () => {
 		<>
 		<footer className="footer bg-base-100 text-base-content p-10 relative">
 			<aside>
-				<Image src={logo} alt="logo" height={90} width={90} />
+				<Image src={logo} alt="logo" height={90} width={90} style={{ width: 'auto', height: 'auto' }}/>
 
 				<p>
 					M&M Soluções Gráficas Ltda.

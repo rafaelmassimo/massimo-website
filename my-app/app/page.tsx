@@ -20,7 +20,7 @@ export default async function Home() {
 				{/* Filter overlay */}
 				<div className="absolute inset-0 flex flex-row items-center justify-center z-20">
 					<div className="lg:flex justify-center items-center bg-gray-900/60 p-3 rounded-xl">
-						<Image className='mx-auto' src={logo} alt="logo" width={300} height={300} />
+						<Image className='mx-auto' src={logo} alt="logo" width={300} height={300} style={{ width: 'auto', height: 'auto' }} />
 						<div className="text-center">
 							<h1 className="text-5xl font-bold text-white">Seja Bem-Vindo</h1>
 							<h2 className="text-white text-xl mt-3">Conheça Nossos Trabalhos</h2>

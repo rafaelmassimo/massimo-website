@@ -26,7 +26,7 @@ const Slider = ({ images }: { images: string[] }) => {
 					clickable: true,
 					type: 'fraction',
 				}}
-				loop={true}
+				loop={images.length > 1}
 				modules={[EffectFade, Navigation, Pagination]}
 				className="h-96 w-full rounded-lg"
 			>
