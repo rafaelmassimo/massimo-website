@@ -2,7 +2,8 @@
 const nextConfig = {
     experimental: {
         serverActions: {
-            bodySizeLimit: '50mb',
+            bodySizeLimit: '100mb',
+            allowedOrigins: ['https://massimo-website.vercel.app/'],
         },
     },
     images: {

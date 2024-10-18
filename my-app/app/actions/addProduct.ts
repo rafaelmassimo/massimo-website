@@ -39,6 +39,8 @@ export async function addProduct(userData: ProductType) {
 			const uploadPromise = cloudinary.uploader
 				.upload(`${image.image}`, {
 					folder: 'massimo_massimo',
+					transformation: [{ width: 800, quality: 'auto' }],
+					
 				})
 				.then((result) => result.secure_url);
 			imagesUploadPromises.push(uploadPromise);
