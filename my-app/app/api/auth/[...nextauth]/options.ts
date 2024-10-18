@@ -78,9 +78,9 @@ const options: NextAuthOptions = {
 					session.user.role = token.role || 'ADMIN';
 					session.user.name = userData?.username;
 				}
-				session.maxAge = 30 * 24 * 60 * 60; // 30 days
+				session.maxAge = 30 * 24 * 60 * 60 * 100; // 30 days
+
 				console.log('Session:', session);
-				
 			} catch (error) {
 				console.log('Error:', error);
 			}
