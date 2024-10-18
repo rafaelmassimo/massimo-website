@@ -17,36 +17,34 @@ const options: NextAuthOptions = {
 				credentials: Record<'email' | 'password', string> | undefined,
 			): Promise<any | null> {
 				const { email, password } = credentials as { email: string; password: string };
-				console.log('Credentials', email, password);
-				
 				if (!email || !password) {
 					return null;
 				}
-				// try {
-				// 	const foundUser = (await User.findOne({ email: email })
-				// 		.lean()
-				// 		.exec()) as UserTypeImported | null;
+				try {
+					const foundUser = (await User.findOne({ email: email })
+						.lean()
+						.exec()) as UserTypeImported | null;
 
-				// 	if (foundUser) {
-				// 		console.log('User found');
-				// 		//Compare the password with the hashed password
-				// 		const match = await bcrypt.compare(password, foundUser.password!);
-				// 		if (match) {
-				// 			console.log('Password match');
-				// 			delete (foundUser as { password?: string }).password;
-				// 			console.log('User:', foundUser);
+					if (foundUser) {
+						console.log('User found');
+						//Compare the password with the hashed password
+						const match = await bcrypt.compare(password, foundUser.password!);
+						if (match) {
+							console.log('Password match');
+							delete (foundUser as { password?: string }).password;
+							console.log('User:', foundUser);
 
-				// 			return foundUser;
-				// 		} else {
-				// 			console.log('Password does not match');
-				// 			return null;
-				// 		}
-				// 	} else {
-				// 		throw new Error('User not found');
-				// 	}
-				// } catch (error) {
-				// 	console.log('Error:', error);
-				// }
+							return foundUser;
+						} else {
+							console.log('Password does not match');
+							return null;
+						}
+					} else {
+						throw new Error('User not found');
+					}
+				} catch (error) {
+					console.log('Error:', error);
+				}
 				return null; // Ensure you return null or a user object consistently
 			},
 		}),
