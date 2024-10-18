@@ -2,6 +2,7 @@ import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 
 export { default } from 'next-auth/middleware';
+export const config = { matcher: ['/add-product', '/add-product/:id'] };
 
 // export default withAuth(function middleware(req) {
 // 	console.log(req.nextUrl.pathname); //This is for check the path of the page
@@ -14,4 +15,3 @@ export { default } from 'next-auth/middleware';
     
 // });
 //But here you can decide which pages you want to protect
-export const config = { matcher: ['/add-product', '/add-product/:id'] };

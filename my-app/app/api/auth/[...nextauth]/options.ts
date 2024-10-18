@@ -1,8 +1,11 @@
+import connectDB from '@/config/database';
 import User from '@/models/user.model';
 import { UserTypeImported } from '@/utils/types';
 import bcrypt from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
+
+
 
 const options: NextAuthOptions = {
 	providers: [
@@ -21,6 +24,7 @@ const options: NextAuthOptions = {
 					return null;
 				}
 				try {
+					await connectDB();
 					const foundUser = (await User.findOne({ email: email })
 						.lean()
 						.exec()) as UserTypeImported | null;
