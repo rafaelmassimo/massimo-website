@@ -24,7 +24,6 @@ const options: NextAuthOptions = {
 					return null;
 				}
 				try {
-					await connectDB();
 					const foundUser = (await User.findOne({ email: email })
 						.lean()
 						.exec()) as UserTypeImported | null;
