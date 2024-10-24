@@ -10,7 +10,7 @@ import { Session } from 'inspector/promises';
 import BallTriangleLoader from '@/app/components/BallTriangleLoader';
 
 const ProductsPage = () => {
-	const { data: session } = useSession();
+	// const { data: session } = useSession() as { data: Session | null };
 
 	const [products, setProducts] = useState<productType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -25,16 +25,18 @@ const ProductsPage = () => {
 		};
 		getProducts();
 	}, []);
+
+	
 	return (
 		<section className="px-4 py-6 bg-base-200">
 			<div className="container-xl lg:container m-auto">
-				{loading && !session ? (
+				{loading ? (
 					<div className="flex justify-center items-center h-96">
 						<BallTriangleLoader />
 					</div>
 				) : (
 					<>
-						{products.length === 0 ? (
+						{products.length === 0 && !loading ? (
 							<h2 className="text-3xl font-bold text-primary mb-6 text-center">
 								Nenhum Produto Disponível
 							</h2>
@@ -46,7 +48,7 @@ const ProductsPage = () => {
 								<div className="lg:grid justify-center items-center grid-cols-2 gap-6">
 									{products.map((product, index) => (
 										<div key={index} className="w-full my-5 mr-10">
-											<ProductCard product={product} session={session as unknown as Session} />
+											<ProductCard product={product}  />
 										</div>
 									))}
 								</div>
