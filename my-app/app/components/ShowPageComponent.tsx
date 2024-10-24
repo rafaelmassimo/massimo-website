@@ -15,6 +15,7 @@ import Sofy from '@/app/components/Sofy';
 
 const ShowPageComponent = () => {
 	const searchParams = useSearchParams();
+	const { data: session } = useSession();
 	const [product, setProduct] = useState<productType>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState(false);
@@ -61,7 +62,7 @@ const ShowPageComponent = () => {
 						</Link>
 						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Produto Buscado:</h2>
 						<div className="flex items-center justify-center">
-							<div className="w-full flex items-center justify-center">
+							<div className="w-full flex justify-center">
 								<ProductCard product={product as any}  />
 							</div>
 						</div>
