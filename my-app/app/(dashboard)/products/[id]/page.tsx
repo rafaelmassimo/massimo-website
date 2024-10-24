@@ -44,7 +44,7 @@ const SearchResult = () => {
 						<div className="lg:grid justify-center items-center grid-cols-2 gap-6">
 							{products.map((product, index) => (
 								<div key={index} className="w-full">
-									<ProductCard product={product} session={session as unknown as Session} />
+									<ProductCard product={product} />
 								</div>
 							))}
 						</div>

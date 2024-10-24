@@ -63,7 +63,7 @@ const ShowPageComponent = () => {
 						<h2 className="text-3xl font-bold text-primary mb-6 text-center">Produto Buscado:</h2>
 						<div className="flex items-center justify-center">
 							<div className="">
-								<ProductCard product={product as any} session={session as unknown as Session} />
+								<ProductCard product={product as any}  />
 							</div>
 						</div>
 					</>
