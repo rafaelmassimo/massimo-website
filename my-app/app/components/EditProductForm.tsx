@@ -10,7 +10,7 @@ import deleteProduct from '../actions/deleteProduct';
 import { getOneProductById } from '../actions/getOneProduct';
 import { updateProduct } from '../actions/updateProduct';
 import DNALoader from './DNALoarder';
-import { set } from 'mongoose';
+
 
 const EditProductForm = () => {
 	const route = useRouter();

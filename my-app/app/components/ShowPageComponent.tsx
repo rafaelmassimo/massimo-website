@@ -15,7 +15,6 @@ import Sofy from '@/app/components/Sofy';
 
 const ShowPageComponent = () => {
 	const searchParams = useSearchParams();
-	const { data: session } = useSession();
 	const [product, setProduct] = useState<productType>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState(false);

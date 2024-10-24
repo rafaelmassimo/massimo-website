@@ -20,7 +20,7 @@ export default function Home() {
 	
         setTimeout(() => {
             setIsLoading(false); // Stop loading after 500ms
-        }, 600);
+        }, 1000);
 
 
 	return (
