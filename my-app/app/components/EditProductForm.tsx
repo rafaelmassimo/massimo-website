@@ -60,13 +60,12 @@ const EditProductForm = () => {
 				updatedProduct,
 			);
 			if (res?.success) {
-				toast.success(res?.success.toString());
+				setLoading(false);
 				route.push('/products');
+				toast.success(res?.success.toString());
 			}
 		} catch (error) {
 			console.error('Error adding product:', error);
-		} finally {
-			setLoading(false);
 		}
 	};
 
@@ -96,8 +95,8 @@ const EditProductForm = () => {
 					<DNALoader />
 				</div>
 			) : (
-				<div className='flex flex-col w-full justify-center items-center'>
-					<form onSubmit={handleSubmit} className='w-full'>
+				<div className="flex flex-col w-full justify-center items-center">
+					<form onSubmit={handleSubmit} className="w-full">
 						<div className="flex flex-col justify-center items-center mb-4 gap-2 w-full">
 							{/* PRODUCT NAME */}
 							<label htmlFor="productName">
@@ -185,7 +184,7 @@ const EditProductForm = () => {
 							</div>
 						</div>
 					</form>
-					<div className='w-fit flex flex-col mt-10 '>
+					<div className="w-fit flex flex-col mt-10 ">
 						<button
 							className="items-center bg-gray-400 text-white hover:bg-gray-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
 							onClick={() => route.push('/products')}
