@@ -1,29 +1,34 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAllCategories } from '../actions/getAllCategories';
 import { Session } from 'inspector/promises';
 import { toast } from 'react-toastify';
 
 const CategorySelector = ({ session }: { session?: Session }) => {
 	const [categories, setCategories] = useState<string[]>();
+	const [changeCategory, setChangeCategory] = useState<boolean>(false);
 
-	const handleClick = async () => {
-		try {
-			const newCategories = await getAllCategories();
-			if (!newCategories) {
-				toast.warning('No categories found');
+	useEffect(() => {
+		const getCategories = async () => {
+			try {
+				const newCategories = await getAllCategories();
+				if (!newCategories) {
+					toast.warning('No categories found');
+				}
+				setCategories(newCategories!);
+			} catch (error) {
+				console.log(error);
 			}
-			setCategories(newCategories!);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+		};
+
+		getCategories();
+	}, [changeCategory]);
 
 	return (
 		<>
 			<div className="collapse bg-slate-400">
-				<input type="checkbox" onClick={handleClick} />
+				<input type="checkbox" onClick={() => setChangeCategory(!changeCategory)} />
 				<div className="btn collapse-title text-xl font-medium pr-2 text-gray-900">Categorias</div>
 				<div className="collapse-content">
 					<div className={`${session ? 'max-h-60 overflow-y-scroll' : null}`}>

@@ -96,61 +96,64 @@ const EditProductForm = () => {
 					<DNALoader />
 				</div>
 			) : (
-				<form onSubmit={handleSubmit}>
-					<div className="flex flex-col justify-center items-center mb-4 gap-2">
-						{/* PRODUCT NAME */}
-						<label htmlFor="productName">
-							<p className="text-gray-700 font-medium text-xl">Nome Produto</p>
-						</label>
-						<input
-							type="text"
-							id="productName"
-							name="productName"
-							className="border rounded-lg w-full py-2 px-3 mb-2 text-secondary"
-							placeholder="Insira o Nome do Produto"
-							value={newProduct.productName}
-							required
-							onChange={(e) => setNewProduct({ ...newProduct, productName: e.target.value })}
-						/>
-						{/* PRODUCT DESCRIPTION */}
-						<label htmlFor="productDescription">
-							<p className="text-gray-700 font-medium text-xl">Descrição Produto</p>
-						</label>
+				<div className='flex flex-col w-full justify-center items-center'>
+					<form onSubmit={handleSubmit} className='w-full'>
+						<div className="flex flex-col justify-center items-center mb-4 gap-2 w-full">
+							{/* PRODUCT NAME */}
+							<label htmlFor="productName">
+								<p className="text-gray-700 font-medium text-xl">Nome Produto</p>
+							</label>
+							<input
+								type="text"
+								id="productName"
+								name="productName"
+								className="border rounded-lg w-full py-2 px-3 mb-2 text-secondary"
+								placeholder="Insira o Nome do Produto"
+								value={newProduct.productName}
+								required
+								onChange={(e) => setNewProduct({ ...newProduct, productName: e.target.value })}
+							/>
+							{/* PRODUCT DESCRIPTION */}
+							<label htmlFor="productDescription">
+								<p className="text-gray-700 font-medium text-xl">Descrição Produto</p>
+							</label>
 
-						<textarea
-							id="productDescription"
-							name="productDescription"
-							className="border rounded-lg w-full py-2 px-3 mb-2 h-32 overflow-y-scroll text-secondary"
-							placeholder="Insira a Descrição do Produto"
-							value={newProduct.productDescription}
-							onChange={(e) => setNewProduct({ ...newProduct, productDescription: e.target.value })}
-						/>
+							<textarea
+								id="productDescription"
+								name="productDescription"
+								className="border rounded-lg w-full py-2 px-3 mb-2 h-32 overflow-y-scroll text-secondary"
+								placeholder="Insira a Descrição do Produto"
+								value={newProduct.productDescription}
+								onChange={(e) =>
+									setNewProduct({ ...newProduct, productDescription: e.target.value })
+								}
+							/>
 
-						{/* CATEGORY */}
-						<label htmlFor="category">
-							<p className="text-gray-700 font-medium text-xl text-center">Categoria</p>
-							<p className=" text-md italic text-primary">
-								Categoria no <strong>SINGULAR</strong>
-							</p>
-						</label>
-						<input
-							type="text"
-							id="category"
-							name="category"
-							className="border rounded-lg w-full py-2 px-3 mb-2 text-secondary"
-							placeholder="Insira a Categoria desse Produto"
-							required
-							value={newProduct.category}
-							onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-						/>
+							{/* CATEGORY */}
+							<label htmlFor="category">
+								<p className="text-gray-700 font-medium text-xl text-center">Categoria</p>
+								<p className=" text-md italic text-primary">
+									Categoria no <strong>SINGULAR</strong>
+								</p>
+							</label>
+							<input
+								type="text"
+								id="category"
+								name="category"
+								className="border rounded-lg w-full py-2 px-3 mb-2 text-secondary"
+								placeholder="Insira a Categoria desse Produto"
+								required
+								value={newProduct.category}
+								onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+							/>
 
-						{/* PRODUCT IMAGES
+							{/* PRODUCT IMAGES
 						<p className="text-gray-700 text-xl text-center">Imagens do Produto</p>
 						<p className=" text-md italic text-accent">
 							( Nao tem como editar as imagens, se precisar trocar, delete e crie um novo )
 						</p> */}
 
-						{/* {newProduct.productImages.length > 0 && (
+							{/* {newProduct.productImages.length > 0 && (
 							<div className="flex flex-col justify-center items-center p-4 bg-base-200 rounded-lg">
 								<h3 className="text-secondary mb-4 text-left">Imagens:</h3>
 
@@ -164,41 +167,44 @@ const EditProductForm = () => {
 							</div>
 						)} */}
 
-						{/* SUBMIT SECTION */}
-						<div className="flex flex-col mt-10">
-							{loadingButtons ? (
-								<DNALoader />
-							) : (
-								<>
-									<button
-										className="bg-blue-400 text-white hover:bg-blue-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
-										type="submit"
-										disabled={loading}
-									>
-										Atualizar o Produto
-									</button>
-
-									<button
-										className="bg-gray-400 text-white hover:bg-gray-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
-										onClick={() => route.push('/products')}
-									>
-										Cancel
-									</button>
-								</>
-							)}
-							<button
-								type="button"
-								className="mt-7 text-white outline outline-3 outline-red-600 outline-offset-4
-    bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700 hover:bg-gradient-to-br 
-    focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-    font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-								onClick={handleDelete}
-							>
-								Deletar Produto
-							</button>
+							{/* SUBMIT SECTION */}
+							<div className="flex flex-col mt-10">
+								{loadingButtons ? (
+									<DNALoader />
+								) : (
+									<>
+										<button
+											className="bg-blue-400 text-white hover:bg-blue-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
+											type="submit"
+											disabled={loading}
+										>
+											Atualizar o Produto
+										</button>
+									</>
+								)}
+							</div>
 						</div>
+					</form>
+					<div className='w-fit flex flex-col mt-10 '>
+						<button
+							className="items-center bg-gray-400 text-white hover:bg-gray-600 font-bold py-2 px-4 shadow-xl rounded-full w-full focus:outline-none mt-3 transition duration-100 focus:translate-y-1 focus:shadow-none"
+							onClick={() => route.push('/products')}
+						>
+							Voltar
+						</button>
+
+						<button
+							type="button"
+							className="mt-7 text-white outline outline-3 outline-red-600 outline-offset-4
+						bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700 hover:bg-gradient-to-br 
+						focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
+						font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+							onClick={handleDelete}
+						>
+							Deletar Produto
+						</button>
 					</div>
-				</form>
+				</div>
 			)}
 		</>
 	);

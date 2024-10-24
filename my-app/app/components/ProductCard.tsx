@@ -9,6 +9,8 @@ import Slider from './Slider';
 
 const ProductCard = ({	product, session, }: { product: productType; session?: Session; }) => {
 
+
+	
 	return (
 		<div key={product._id?.toString()}>
 			<div className="flex flex-col justify-end rounded-xl shadow-md relative bg-base-100 min-h-[410px] lg:min-w-[440px] max-w-[700px] mt-2 transform transition-transform duration-300 hover:scale-[1.02]">
