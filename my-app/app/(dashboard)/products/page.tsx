@@ -28,7 +28,7 @@ const ProductsPage = () => {
 	return (
 		<section className="px-4 py-6 bg-base-200">
 			<div className="container-xl lg:container m-auto">
-				{loading ? (
+				{loading && !session ? (
 					<div className="flex justify-center items-center h-96">
 						<BallTriangleLoader />
 					</div>
