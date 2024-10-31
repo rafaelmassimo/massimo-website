@@ -11,7 +11,7 @@ export const sendEmail = async (formData: FormData) => {
 	const message = (formData.get('message') as string | null) ?? '';
 
 	const msg = {
-		to: 'rafael_massimo@hotmail.com', // recipient email
+		to: 'elisvaldo07@hotmail.com', // recipient email
 		from: 'rafaelmassimocanada@gmail.com', // replace with your verified sender email
 		subject: `Envio De Formulário Para Contato - Web Site`,
 		text: `Nome Cliente: ${clientName}\nTelefone do Cliente: ${clientNumber}\nEmail do cliente para retornar: ${emailClient}\nCódigo Produto: ${productCode}\n\nMensagem:\n\n${message}`,
